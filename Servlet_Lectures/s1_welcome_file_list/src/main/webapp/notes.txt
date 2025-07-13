@@ -1,0 +1,19 @@
+1.  The <welcome-file-list> is a configuration element defined in the web.xml deployment descriptor
+
+2.  It allows you to specify a list of default files that a web container (like Tomcat or Jetty) should try to serve when a client requests a URL that refers to a directory, rather than a specific file.
+
+3.  Purpose:
+
+    The primary purpose of the <welcome-file-list> is to provide a "default page" for a given directory.
+    When a user enters a URL like http://localhost:8080/mywebapp/ (which points to the root of your web application)
+    or http://localhost:8080/mywebapp/images/ (which points to a sub-directory),
+    the server needs to know what file to display if no specific file is mentioned in the URL.
+
+4.  Syntax:
+
+    <welcome-file-list>
+      <welcome-file>default.jsp</welcome-file>
+      <welcome-file>index.html</welcome-file>
+      <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+

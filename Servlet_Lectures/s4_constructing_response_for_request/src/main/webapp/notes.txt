@@ -1,0 +1,13 @@
+1.  HttpServletRequest and HttpServletResponse in Servlets. 
+    These two objects are fundamental to how servlets interact with clients (like web browsers). 
+    Every time a client sends a request to your web server, the server creates these two objects and passes them to your servlet's doGet(), doPost(), or other doXxx() methods.
+
+2.  HttpServletRequest (The Incoming Request)
+    The HttpServletRequest object encapsulates all the information coming from the client to the server. 
+    Think of it as a container for everything the client sent. 
+    Your servlet uses this object to read what the client wants.
+
+3.  HttpServletResponse (The Outgoing Response)
+    The HttpServletResponse object encapsulates all the information that the server sends back to the client. 
+    Think of it as a container for what your servlet wants to send back as a reply. 
+    Your servlet uses this object to construct the response.

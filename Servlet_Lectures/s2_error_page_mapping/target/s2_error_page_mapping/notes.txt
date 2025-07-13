@@ -1,0 +1,52 @@
+1. The error page and error page mapping in Servlets provide a graceful way to handle exceptions and HTTP errors that occur within your web application. 
+Instead of displaying a generic server error message (which can be confusing or even expose sensitive information), you can redirect users to a custom, user-friendly error page.
+
+2. An "error page" is a specific web resource (typically an HTML or JSP file) that is displayed to the user when an error or exception occurs in your web application. Its purpose is to:
+Improve User Experience
+Hide Technical Details
+Provide Next Steps
+
+3. syntax and examples of exception
+
+<web-app>
+    <error-page>
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/WEB-INF/errorPages/nullPointerError.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/errorPages/generalError.jsp</location>
+    </error-page>
+
+     <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/error-pages/unauthorized.xhtml</location>
+    </error-page>
+        
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/error-pages/unauthenticated.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error-pages/not-found.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/error-pages/general-error.html</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>jakarta.faces.application.ViewExpiredException</exception-type>
+        <location>/WEB-INF/error-pages/view-expired.html</location>
+    </error-page>
+
+    <error-page>
+        <!-- No error-code or exception-type, i.e. this will match any other HTTP status than defined above -->
+        <location>/WEB-INF/error-pages/unknown-error.html</location>
+    </error-page>
+
+</web-app>

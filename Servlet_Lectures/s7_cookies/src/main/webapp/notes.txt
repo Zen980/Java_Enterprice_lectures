@@ -1,0 +1,54 @@
+1.  Servlet Cookies: Storing Small Pieces of Information on the Client-Side
+    a Cookie is a small piece of data that a server sends to a client's web browser, and the browser then stores it. 
+    Whenever the client makes subsequent requests to the same server (specifically, the same domain), the browser sends that cookie back to the server.
+
+    This mechanism is crucial because,HTTP is stateless. Cookies provide a way for the server to "remember" something about the client, even across different requests or Browse sessions, without having to store all that information on the server itself.
+
+2.  How Cookies Work in Servlets:
+
+    Server Creates a Cookie: 
+    Your Servlet code creates a jakarta.servlet.http.Cookie object (or javax.servlet.http.Cookie for older versions of Java EE). You set a name and a value for this cookie.
+         Cookie cookie = new Cookie("name", "value");
+
+    Server Adds Cookie to Response: 
+    You add the created Cookie object to the HttpServletResponse object. The web container then includes this cookie in the HTTP response headers sent back to the client's browser.
+        response.addCookie(cookie);
+
+    Client Stores Cookie: 
+    The client's browser receives the response, parses the Set-Cookie header, and stores the cookie on the user's computer.
+
+    Client Sends Cookie with Subsequent Requests: 
+    For all future requests to the same domain (and based on other cookie attributes like path), the browser automatically includes that cookie in the HTTP request headers.
+
+    Server Reads Cookie from Request: 
+    Your Servlet code can then retrieve the cookies from the HttpServletRequest object, extract their names and values, and use that information.
+
+3.  Key Attributes/Properties of a Cookie:
+    When you create a Cookie object, you can set several important attributes:
+
+    name (Required): A unique name for the cookie (e.g., "username", "lastVisit").
+    value (Required): The data associated with the cookie (e.g., "Alice", "2025-07-11").
+        setMaxAge(int seconds):
+            Positive Value: The cookie will persist on the client's machine for the specified number of seconds. 
+            This creates a persistent cookie. (e.g., cookie.setMaxAge(60 * 60 * 24 * 30); for 30 days).
+
+            0: Deletes the cookie immediately from the client's browser.
+            -1 (Default): The cookie is a session cookie. It will only last as long as the user's browser session (i.e., it's deleted when the browser is closed).
+
+        setPath(String path):
+        Specifies the URL path for which the cookie is valid. If not set, it defaults to the path of the servlet that created it. A common value is "/" to make it available to the entire web application.
+
+        setDomain(String domain):
+        Specifies the domain for which the cookie is valid. By default, it's the domain that sent the cookie. You can set it to a broader domain (e.g., "https://www.google.com/search?q=.example.com") to make it available to subdomains.
+
+        setSecure(boolean secure):
+        If true, the cookie will only be sent over secure (HTTPS) connections.
+
+        setHttpOnly(boolean httpOnly):
+        If true, the cookie cannot be accessed via client-side JavaScript (document.cookie). This is a crucial security measure to mitigate XSS (Cross-Site Scripting) attacks, as it prevents malicious scripts from stealing session cookies.
+
+4.  Use Cases for Cookies:
+    Remember Me functionality (for non-sensitive user IDs).
+    Personalization: Storing user preferences like theme, language, or last viewed items.    
+    Tracking: Basic user tracking (though often augmented with other technologies).
+    Session Management (Underlying): As mentioned, HttpSession often uses a JSESSIONID cookie internally to manage sessions.

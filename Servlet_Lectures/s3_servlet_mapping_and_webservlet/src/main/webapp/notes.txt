@@ -1,0 +1,33 @@
+1.  In Servlet-based web applications, for the web container (like Tomcat) to know which Java Servlet class should handle which incoming URL request, you need to establish a "mapping."
+
+    There are two primary ways to achieve this: 
+    Servlet Mapping using web.xml and the @WebServlet annotation.
+
+2.  Servlet Mapping (in web.xml)
+    This is the traditional way of configuring servlets, particularly prevalent in older Servlet API versions (before Servlet 3.0).
+    It involves defining the mapping in the web.xml deployment descriptor file, which is located in the WEB-INF directory of your web application.
+
+    Syntax:
+        <web-app>
+            <servlet>
+                <servlet-name>MyHelloWorldServlet</servlet-name>
+                <servlet-class>com.example.MyHelloWorldServlet</servlet-class>
+            </servlet>
+
+            <servlet-mapping>
+                <servlet-name>MyHelloWorldServlet</servlet-name>
+                <url-pattern>/hello</url-pattern>
+            </servlet-mapping>
+
+            <servlet-mapping>
+                <servlet-name>MyHelloWorldServlet</servlet-name>
+                <url-pattern>/greeting</url-pattern>
+            </servlet-mapping>
+        </web-app>
+
+3.  @WebServlet Annotation
+    Introduced in Servlet API 3.0 (Java EE 6), the @WebServlet annotation provides a more concise and modern way to configure servlets directly within your Java code, eliminating the need for web.xml for basic servlet mappings.
+
+    Syntax:
+        @WebServlet(urlPatterns = {"/hello", "/greeting"}) // for more than one URL pattern, separate them with commas
+        public class MyHelloWorldServlet extends HttpServlet {}

@@ -1,0 +1,49 @@
+1.  HttpSession in Servlets: Managing User Sessions
+    HTTP, the protocol primarily used for web communication, is inherently stateless. 
+    This means that each request from a client to a server is treated as an independent transaction, and the server doesn't inherently "remember" anything about previous requests from the same client.
+
+    However, in real-world web applications (like e-commerce sites, social media, or online banking), you need to maintain state about a user across multiple requests. For example:
+    Keeping track of items in a shopping cart as a user browses.
+    Authenticating a user once and then keeping them logged in across multiple pages.
+    Storing user preferences.
+
+    The HttpSession provides a mechanism for a web application to store and retrieve information about a user across multiple requests from that same user. 
+    It allows you to maintain a "session" for a specific client.
+
+2.  Creating a HttpSession in a Servlet:
+
+    HttpSession session = request.getSession(); // creates a new session or retrieves an existing session.
+    HttpSession session = request.getSession(false); // retrieves an existing session or returns null if no session exists. restricts form Creating new sessions.
+
+    To create a HttpSession in a Servlet, you need to do the following:
+    1.  When a client makes its first request to a web application, 
+        and your servlet calls request.getSession(), 
+        the web container (like Tomcat) checks if a session already exists for this client.
+
+        If no session exists, the container creates a new HttpSession object.
+        It then generates a unique Session ID (a long, alphanumeric string) for this new session.
+
+    2.  Session Identification (Subsequent Requests):
+        When the client sends a subsequent request, the container receives the request and extracts the Session ID (either from the cookie or the rewritten URL).
+        It then uses this Session ID to retrieve the correct HttpSession object from its internal memory.
+
+    3.  Storing and Retrieving Data:
+        Once you have the HttpSession object in your servlet, you can store and retrieve data as key-value pairs using methods similar to a Map:
+        
+        1.  session.setAttribute("key", value): Stores an object in the session.
+
+        2.  session.getAttribute("key"): Retrieves an object from the session. You usually need to cast it back to its original type.
+
+        3.  session.removeAttribute("key"): Removes an object from the session.
+
+        4.  session.invalidate(): Invalidates the session, which means it will be removed from the container's memory.
+
+        5.  session.getId(): Returns the unique Session ID.
+
+        6.  session.getCreationTime(): Returns the time when the session was created.
+
+        7.  session.getLastAccessedTime(): Returns the time when the session was last accessed.
+
+        8.  session.setMaxInactiveInterval(int seconds): Sets the maximum time (in seconds) that the session can be inactive before it expires.
+
+        9.  session.isNew(): Returns true if the client does not yet know about the session or if the client chooses not to join the session. (This means it's a newly created session for this request).

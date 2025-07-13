@@ -1,0 +1,75 @@
+1.  Servlet filters are powerful components in Java web applications that allow you to intercept and process requests before they reach a servlet or JSP, and responses before they are sent back to the client. 
+They act as "pluggable" units of code that can perform various tasks across multiple servlets or resources, promoting reusability and modularity.
+
+2.  Key Interfaces and Classes
+    1.  FilterChain Interface:
+        a.  Represents the chain of filters. 
+            The doFilter(ServletRequest request, ServletResponse response) method on this object is used to pass the request and response to the next filter or the target resource.
+
+    2.  FilterConfig Interface: Provides configuration information to a filter during its initialization.
+        a.  getFilterName(): The name of the filter.
+        b.  getInitParameter(String name): The value of an initialization parameter.
+        c.  getInitParameterNames(): An enumeration of all initialization parameter names.
+        d.  getServletContext(): The ServletContext object for the web application.
+    
+3.  How Filters are Configured and Mapped
+    1.  web.xml (Deployment Descriptor):
+
+        <filter>
+            <filter-name>MyLoggingFilter</filter-name>
+            <filter-class>com.example.filters.LoggingFilter</filter-class>
+            <init-param>
+                <param-name>logLevel</param-name>
+                <param-value>INFO</param-value>
+            </init-param>
+        </filter>
+
+        <filter-mapping>
+            <filter-name>MyLoggingFilter</filter-name>
+            <url-pattern>/*</url-pattern> 
+            <dispatcher>REQUEST</dispatcher>
+            <dispatcher>FORWARD</dispatcher>
+            <dispatcher>INCLUDE</dispatcher>
+            <dispatcher>ERROR</dispatcher>
+            <dispatcher>ASYNC</dispatcher>
+        </filter-mapping>
+    
+        <filter> element: Declares the filter, giving it a name and specifying its implementation class. You can also provide initialization parameters.
+
+        <filter-mapping> element: Maps the declared filter to:
+
+        <url-pattern>: A URL pattern (e.g., /admin/*, /products/*, /* for all URLs).
+
+        <servlet-name>: The name of a specific servlet as defined in its <servlet> element.
+
+        <dispatcher> element (Servlet 3.0+): Controls when the filter should be applied.
+            REQUEST (default): Applied to direct client requests.
+            FORWARD: Applied when a request is forwarded using a RequestDispatcher.
+            INCLUDE: Applied when a resource is included using a RequestDispatcher.
+            ERROR: Applied when an error page is displayed.
+            ASYNC: Applied when asynchronous processing is started.
+
+    2.  Annotations (Servlet 3.0+):
+            syntax:
+                @WebFilter(
+                    filterName = "MyLoggingFilter",
+                    urlPatterns = {"/*"}, // Applies to all requests
+                    // servletNames = {"MyServlet"}, // Alternatively, map to a servlet by name
+                    initParams = {
+                        @WebInitParam(name = "logLevel", value = "INFO")
+                    },
+                    dispatcherTypes = {
+                        DispatcherType.REQUEST,
+                        DispatcherType.FORWARD
+                    }
+                )
+
+            filterName: Specifies the name of the filter.
+
+            urlPatterns: An array of URL patterns.
+
+            servletNames: An array of servlet names.
+
+            initParams: An array of @WebInitParam annotations for initialization parameters.
+
+            dispatcherTypes: An array of DispatcherType enums.
