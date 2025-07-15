@@ -16,9 +16,8 @@ public class filter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         count++;
-        request.setAttribute("count", count);
-        System.out.println(count);
-        chain.doFilter(request, response);
+        request.setAttribute("count", count); // set the count attribute in the request
+        chain.doFilter(request, response); // pass the request to the next filter or servlet
     }
    
 }
