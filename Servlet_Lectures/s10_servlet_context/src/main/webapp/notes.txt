@@ -1,0 +1,24 @@
+1.  ServletContext 
+    An object of ServletContext is created by the web container when a project is deployed. 
+    This object is unique to each web application, meaning there is only one ServletContext object per web application.
+
+2.  Purpose of ServletContext
+    The primary purpose of ServletContext is to retrieve configuration information from the web.xml file. 
+    It serves as an interface between the container and the servlets. 
+    A significant advantage of using ServletContext is its ability to share information across multiple servlets within the same web application.
+
+    Beyond retrieving initialization parameters, the ServletContext object can also be used to set, get, or remove attributes within the application scope. It facilitates inter-application communication.
+
+    Syntax:
+        eg.
+        <context-param>
+            <param-name>community-mail</param-name>
+            <param-value>community@example.com</param-value>
+        </context-param>
+
+3.  Methods of ServletContext
+    getInitParameter(String name): This method returns the parameter value for the specified parameter name
+    getInitParameterNames(): This method returns an enumeration of all the context's initialization parameter names
+    setAttribute(String name,Object object): This method sets the given object in the application scope
+    getAttribute(String name): This method returns the attribute for the specified name. If the attribute is not found, it returns null.
+    removeAttribute(String name): This method removes the attribute with the given name from the servlet context.

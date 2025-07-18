@@ -5,10 +5,10 @@
 2.  Need for ServletConfig
     The primary need for the ServletConfig interface is to enable servlets to access specific initialization parameters and other configuration details that are set up in the deployment descriptor (web.xml)
 
-    Decoupling Configuration from Code: 
+    Decoupling Configuration from Code:
         A core advantage of ServletConfig is that if any configuration information is modified in the web.xml file, there is no need to change or recompile the servlet file itself. This promotes a cleaner separation between application logic and deployment-specific settings.
         
-    Container-Provided Object: 
+    Container-Provided Object:
         An object of ServletConfig is created by the web container for each servlet, making it readily available for use within the servlet. The getServletConfig() method of the Servlet interface is used to obtain this object.
 
         Methods
@@ -17,7 +17,7 @@
         2.  getInitParameterNames(): Returns an enumeration of the names of all initialisation parameters.
         3.  getServletName(): Returns the name of the servlet.
 
-        
+        Note Every Servlet has it own ServletConfig object. web container creates a new instance of the object for each servlet.
 
 3.  Syntax
     web.xml (deployment descriptor)

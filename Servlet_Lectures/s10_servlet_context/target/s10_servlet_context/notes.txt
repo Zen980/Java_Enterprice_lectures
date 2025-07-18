@@ -1,0 +1,19 @@
+1.  ServletContext 
+    An object of ServletContext is created by the web container when a project is deployed. 
+    This object is unique to each web application, meaning there is only one ServletContext object per web application.
+
+2.  Purpose of ServletContext
+    The primary purpose of ServletContext is to retrieve configuration information from the web.xml file. 
+    It serves as an interface between the container and the servlets. 
+    A significant advantage of using ServletContext is its ability to share information across multiple servlets within the same web application.
+
+    Beyond retrieving initialization parameters, the ServletContext object can also be used to set, get, or remove attributes within the application scope. It facilitates inter-application communication.
+
+    Syntax:
+        eg.
+        <context-param>
+            <param-name>community-mail</param-name>
+            <param-value>community@example.com</param-value>
+        </context-param>
+
+    
