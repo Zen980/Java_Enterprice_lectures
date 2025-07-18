@@ -10,7 +10,7 @@
 <body>
     <h1>Servlet Context</h1>
     <a href="Servlet">Click here to access the servlet 1</a><br><br>
-    <a href="servlet-context">Click here to access the servlet 2</a><br><br>
+    <!-- <a href="servlet-context">Click here to access the servlet 2</a><br><br> -->
 
 </body>
 
