@@ -16,5 +16,6 @@ public class servlet1 extends HttpServlet {
                                         "<h1>Hello from servlet 1</h1>"+
                                     "</body>"+
                                 "</html>");
+
     }
 }

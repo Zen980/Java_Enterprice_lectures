@@ -31,7 +31,7 @@ public class servlet2 extends HttpServlet {
          * sure to handle through post method.
          */
 
-        RequestDispatcher rd = req.getRequestDispatcher("servlet3");
+        RequestDispatcher rd = req.getRequestDispatcher("servlet3"); // notice in output url remains servlet2 not changed to servlet3
         rd.forward(req, resp);
     }
 

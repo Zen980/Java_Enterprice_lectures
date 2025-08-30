@@ -1,0 +1,18 @@
+jsp:setProperty and jsp:getProperty action tags
+
+    The setProperty and getProperty action tags are used for developing web application with Java Bean.
+    In web devlopment, bean class is mostly used because it is a reusable software component that represents data.
+
+syntax:
+
+    <jsp:setProperty name="instanceOfBean" property= "*" |   
+        property="propertyName" param="parameterName"  |   
+        property="propertyName" value="{ string | <%= expression %>}"   
+    />  
+
+    <jsp:setProperty name="bean" property="*" />  : if you have to set all the values of incoming request in the bean
+
+    <jsp:setProperty name="bean" property="username" /> : if you have to set value of the incoming specific property from client
+
+    <jsp:setProperty name="bean" property="username" value="Kumar" /> : if you have to set a specific value in the property
+
