@@ -18,6 +18,7 @@ public class filter implements Filter {
         count++;
         request.setAttribute("count", count); // set the count attribute in the request
         chain.doFilter(request, response); // pass the request to the next filter or servlet
+        System.out.println("Counted filter After response is generated");
     }
    
 }

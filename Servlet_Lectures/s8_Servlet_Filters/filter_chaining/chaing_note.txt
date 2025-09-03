@@ -1,0 +1,7 @@
+Most servlet containers, like Tomcat or Jetty, will load the filters in an undefined order, which often defaults to alphabetical order based on the filterName or the class name. In this case, "FilterOne" comes before "FilterTwo" alphabetically, which is likely why it's executed first in your environment.
+
+However, relying on alphabetical ordering is not a reliable or portable solution. For production applications, you should use one of the following methods to explicitly control the order:
+
+web.xml: The traditional and most reliable way is to define your filters and their mappings in the web.xml file. The order in which they appear in the file is the order in which they will be executed.
+
+Programmatic Registration: You can use a ServletContextListener to programmatically register your filters in the exact order you need. This is a common practice for modern, annotation-driven applications.
